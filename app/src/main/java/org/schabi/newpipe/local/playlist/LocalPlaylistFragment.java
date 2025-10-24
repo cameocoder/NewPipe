@@ -471,7 +471,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
                             final int indexInHistory = Collections.binarySearch(historyStreamIds,
                                     playlistItem.getStreamId());
-                            final long duration = playlistItem.toStreamInfoItem().getDuration();
+                            final long duration = playlistItem.getStreamInfoItem().getDuration();
 
                             if (indexInHistory < 0 || (streamStateEntity != null
                                     && !streamStateEntity.isFinished(duration))) {
@@ -797,7 +797,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     protected void showInfoItemDialog(final PlaylistStreamEntry item) {
-        final StreamInfoItem infoItem = item.toStreamInfoItem();
+        final StreamInfoItem infoItem = item.getStreamInfoItem();
 
         try {
             final Context context = getContext();
@@ -869,7 +869,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         final List<StreamInfoItem> streamInfoItems = new ArrayList<>(infoItems.size());
         for (final LocalItem item : infoItems) {
             if (item instanceof PlaylistStreamEntry) {
-                streamInfoItems.add(((PlaylistStreamEntry) item).toStreamInfoItem());
+                streamInfoItems.add(((PlaylistStreamEntry) item).getStreamInfoItem());
             }
         }
         return new SinglePlayQueue(streamInfoItems, index);
